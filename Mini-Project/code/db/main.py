@@ -321,5 +321,61 @@ def get_all_product_details():
         if connection.is_connected():
             cursor.close()
             connection.close()
-stock_data = get_all_product_details()
-print(stock_data)
+#**********************************************update product ***************************************************
+def update_product_handler(product_name, product_description, product_stock, product_price, product_category):
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor()
+
+        update_query = """
+        UPDATE products
+        SET 
+            description = %s,
+            stock = %s,
+            price = %s,
+            category = %s
+        WHERE name = %s
+        """
+        cursor.execute(update_query, (product_description, int(product_stock), float(product_price), product_category, product_name))
+        connection.commit()
+
+        print(f"Product {product_name} updated successfully.")
+
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+        return None
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+#********************************update emp handler ***********************************
+            
+def update_emp_handler(emp_name, emp_username, emp_email, emp_role, emp_age,emp_gender):
+    print(emp_username)
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor()
+
+        update_query = """
+        UPDATE employee
+        SET 
+            name = %s,
+            username = %s,
+            role = %s,
+            age = %s,
+            email = %s
+        WHERE username = %s
+        """
+        cursor.execute(update_query, (emp_name, emp_username, emp_role, emp_age, emp_email,emp_username))
+        connection.commit()
+
+        print(f"Employee {emp_username} updated successfully.")
+
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+        return None
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+    
