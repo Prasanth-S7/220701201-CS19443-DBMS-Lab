@@ -420,7 +420,7 @@ QSlider::sub-page:vertical {
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="rms_main">
        <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -1332,23 +1332,6 @@ font:16pt;
                       </property>
                      </widget>
                     </item>
-                    <item alignment="Qt::AlignTop">
-                     <widget class="QPushButton" name="inventory_btn">
-                      <property name="text">
-                       <string>Inventory</string>
-                      </property>
-                      <property name="icon">
-                       <iconset>
-                        <normaloff>../../../../../mnt/c/Users/prasa/Downloads/inspection.png</normaloff>../../../../../mnt/c/Users/prasa/Downloads/inspection.png</iconset>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>20</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </widget>
-                    </item>
                     <item>
                      <widget class="QFrame" name="frame_18">
                       <property name="styleSheet">
@@ -1381,6 +1364,40 @@ font:16pt;
                        <property name="bottomMargin">
                         <number>0</number>
                        </property>
+                       <item>
+                        <widget class="QPushButton" name="inventory_btn">
+                         <property name="text">
+                          <string>Inventory</string>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>../../../../../mnt/c/Users/prasa/Downloads/inspection.png</normaloff>../../../../../mnt/c/Users/prasa/Downloads/inspection.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="gen_invoice">
+                         <property name="text">
+                          <string>Generate Invoice</string>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>../../../../../mnt/c/Users/prasa/Downloads/invoice.png</normaloff>../../../../../mnt/c/Users/prasa/Downloads/invoice.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>20</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
                        <item alignment="Qt::AlignBottom">
                         <widget class="QPushButton" name="logout_btn">
                          <property name="text">
@@ -1451,7 +1468,7 @@ font:16pt;
                  <item>
                   <widget class="QStackedWidget" name="stackedWidget_2">
                    <property name="currentIndex">
-                    <number>0</number>
+                    <number>1</number>
                    </property>
                    <widget class="QWidget" name="ProfilePage">
                     <layout class="QHBoxLayout" name="horizontalLayout_8">
@@ -1744,6 +1761,164 @@ border-radius:100;
                         </size>
                        </property>
                       </spacer>
+                     </item>
+                    </layout>
+                   </widget>
+                   <widget class="QWidget" name="page_2">
+                    <layout class="QHBoxLayout" name="horizontalLayout_18">
+                     <item>
+                      <widget class="QFrame" name="frame_42">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_34">
+                        <item>
+                         <widget class="QFrame" name="frame_48">
+                          <property name="frameShape">
+                           <enum>QFrame::StyledPanel</enum>
+                          </property>
+                          <property name="frameShadow">
+                           <enum>QFrame::Raised</enum>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_36">
+                           <item>
+                            <widget class="QTableWidget" name="tableWidget_3">
+                             <column>
+                              <property name="text">
+                               <string>Name</string>
+                              </property>
+                             </column>
+                             <column>
+                              <property name="text">
+                               <string>Quantity</string>
+                              </property>
+                             </column>
+                             <column>
+                              <property name="text">
+                               <string>Price</string>
+                              </property>
+                             </column>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item alignment="Qt::AlignBottom">
+                         <widget class="QFrame" name="frame_49">
+                          <property name="frameShape">
+                           <enum>QFrame::StyledPanel</enum>
+                          </property>
+                          <property name="frameShadow">
+                           <enum>QFrame::Raised</enum>
+                          </property>
+                          <layout class="QHBoxLayout" name="horizontalLayout_19">
+                           <item>
+                            <widget class="QLineEdit" name="item_name">
+                             <property name="minimumSize">
+                              <size>
+                               <width>40</width>
+                               <height>70</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>300</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">font: 14pt &quot;Sans Serif&quot;;</string>
+                             </property>
+                             <property name="placeholderText">
+                              <string>Item Name</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLineEdit" name="quantity">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>70</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>300</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">font: 14pt &quot;Sans Serif&quot;;</string>
+                             </property>
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="placeholderText">
+                              <string>Quantity</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="add_item">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>70</height>
+                              </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">font: 14pt &quot;Sans Serif&quot;;</string>
+                             </property>
+                             <property name="text">
+                              <string>Add Item</string>
+                             </property>
+                             <property name="icon">
+                              <iconset>
+                               <normaloff>../../../../../mnt/c/Users/prasa/Downloads/add-to-cart (1).png</normaloff>../../../../../mnt/c/Users/prasa/Downloads/add-to-cart (1).png</iconset>
+                             </property>
+                             <property name="iconSize">
+                              <size>
+                               <width>20</width>
+                               <height>20</height>
+                              </size>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QPushButton" name="generate_invoice">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>70</height>
+                              </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">font: 14pt &quot;Sans Serif&quot;;</string>
+                             </property>
+                             <property name="text">
+                              <string>Generate Invoice</string>
+                             </property>
+                             <property name="icon">
+                              <iconset>
+                               <normaloff>../../../../../mnt/c/Users/prasa/Downloads/invoice.png</normaloff>../../../../../mnt/c/Users/prasa/Downloads/invoice.png</iconset>
+                             </property>
+                             <property name="iconSize">
+                              <size>
+                               <width>20</width>
+                               <height>20</height>
+                              </size>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
                      </item>
                     </layout>
                    </widget>

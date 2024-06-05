@@ -378,4 +378,42 @@ def update_emp_handler(emp_name, emp_username, emp_email, emp_role, emp_age,emp_
         if connection.is_connected():
             cursor.close()
             connection.close()
+            
+#**************************************get total price*****************************************************
+
+def get_total_price(item_name, quantity):
+    try:
+        print("ex")
+        connection = get_db_connection()
+        cursor = connection.cursor()
+        query = "SELECT price FROM products WHERE name = %s"
+        cursor.execute(query, (item_name,))
+        
+        result = cursor.fetchone()
+        
+        if result:
+            price = result[0]
+            print("found")
+            total_price = float(price) * float(quantity)
+        else:
+            total_price = None
+        if total_price is not None:
+            print(f"The total price for {quantity} units of '{item_name}' is {total_price}")
+            return total_price
+        else:
+            print(f"Item '{item_name}' not found.")
+        
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+        return None
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+get_total_price("Apple","50")
+    
+
+
+
+    
     
