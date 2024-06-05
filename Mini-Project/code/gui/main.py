@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from db.main import login,get_all_employee_details,get_employee_details,get_all_product_details
+from db.main import login,get_all_employee_details,get_employee_details,get_all_product_details,update_product_handler,update_emp_handler
 
 
 class Ui_MainWindow(object):
@@ -1473,8 +1473,116 @@ class Ui_MainWindow(object):
         self.profile_btn.clicked.connect(lambda: self.stackedWidget_2.setCurrentWidget(self.ProfilePage))
         self.inventory_btn.clicked.connect(lambda: self.stackedWidget_2.setCurrentWidget(self.Inventory))
         self.rms_login_loginbtn.clicked.connect(self.on_login)
+        self.rms_employees_updatebtn.clicked.connect(self.showUpdateEmpScreen)
+        self.rms_inventory_updatebtn.clicked.connect(self.show_page)
+        self.tableWidget_2.clicked.connect(self.handle_product_click)
+        self.tableWidget.clicked.connect(self.handle_emp_click)
+        self.rms_updateprod_screen_update_btn.clicked.connect(self.update_product_details)
+        self.rms_update_screen_update_btn.clicked.connect(self.update_emp_details)
+    def showUpdateEmpScreen(self):
+            self.stackedWidget_2.setCurrentWidget(self.rms_update_employee)
+            emp_name = ""
+            emp_role = ""
+            emp_username = ""
+            emp_email = ""
+            emp_age = ""
+            emp_gender = ""
+            print(self.selected_emp)
+            for item in self.selected_emp:
+                if "Name" in item:
+                        emp_name = item["Name"]
+                elif "Username" in item:
+                        emp_username = item["Username"]
+                elif "Email" in item:
+                        emp_email = item["Email"]
+                elif "Age" in item:
+                        emp_age = item["Age"]
+                elif "Role" in item:
+                        emp_role = item["Role"]
+                elif "Gender" in item:
+                        emp_gender = item["Gender"]
+            self.rms_update_employee_name.setText(emp_name)
+            self.update_age.setText(emp_age)
+            self.update_email.setText(emp_email)
+            self.update_role.setText(emp_role)
+            self.rms_update_employee_username.setText(emp_username)
+            self.update_gender.setText(emp_gender)
+    def update_emp_details(self):
+            emp_name=self.rms_update_employee_name.text()
+            emp_username = self.rms_update_employee_username.text()
+            emp_email=self.update_email.text()
+            emp_role= self.update_role.text()
+            emp_age = self.update_age.text()
+            emp_gender = self.update_gender.text()
+            update_emp_handler(emp_name,emp_username,emp_email,emp_role,emp_age,emp_gender)
+            
+    def update_product_details(self):
+            produt_name=self.update_product_name.text()
+            product_description = self.update_description.text()
+            product_stock=self.update_stock.text()
+            product_price= self.update_price.text()
+            product_category = self.update_category.text()
+            update_product_handler(produt_name,product_description,product_stock,product_price,product_category)
+            
         
+    def show_page(self):
+            self.stackedWidget_2.setCurrentWidget(self.page)
+            product_name = ""
+            product_category = ""
+            product_description = ""
+            product_stock = ""
+    
+            for item in self.selected_product:
+                if "Name" in item:
+                        product_name = item["Name"]
+                elif "Category" in item:
+                        product_category = item["Category"]
+                elif "Description" in item:
+                        product_description = item["Description"]
+                elif "Stock" in item:
+                        product_stock = item["Stock"]
+                elif "ProductId" in item:
+                        product_productId = item["ProductId"]
+                elif "Price" in item:
+                        product_Price = item["Price"]
+    
+            self.update_product_name.setText(product_name)
+            self.update_category.setText(product_category)
+            self.update_description.setText(product_description)
+            self.update_price.setText(product_Price)
+            self.update_stock.setText(product_stock)
+    def handle_product_click(self,index):
+             row = index.row()
+             self.selected_product = self.get_row_items(row)
+    def handle_emp_click(self,index):
+             row = index.row()
+             self.selected_emp = self.get_row_emp_items(row)
+    def get_row_items(self, row):
+        column_count = self.tableWidget_2.columnCount()
+        row_items = []
+        for column in range(column_count):
+                item = self.tableWidget_2.item(row, column)
+                column_name = self.tableWidget_2.horizontalHeaderItem(column).text()
+                if item is not None:
+                    row_items.append({column_name: item.text()})
+                else:
+                    row_items.append({column_name: None})
         
+        return row_items
+
+    def get_row_emp_items(self, row):
+        column_count = self.tableWidget.columnCount()
+        row_items = []
+        for column in range(column_count):
+                item = self.tableWidget.item(row, column)
+                column_name = self.tableWidget.horizontalHeaderItem(column).text()
+                if item is not None:
+                    row_items.append({column_name: item.text()})
+                else:
+                    row_items.append({column_name: None})
+        
+        return row_items
+                
     def populate_stocks(self):
             stock_details = get_all_product_details();
             self.tableWidget_2.setRowCount(len(stock_details))
