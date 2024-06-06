@@ -1,0 +1,8 @@
+Invoice
+
+Item: Apple, Quantity: 40, Total Price: 39.6
+Item: Banana, Quantity: 50, Total Price: 25.0
+Item: Eggs, Quantity: 4, Total Price: 11.96
+Item: Cheese, Quantity: 2, Total Price: 11.98
+
+Total Amount: 88.54
